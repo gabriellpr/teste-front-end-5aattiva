@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import CryptoJS from "crypto-js";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
+import "../../bootstrap.css";
 import "./styles.css";
 
 import api from "../../services/api";
@@ -21,7 +25,7 @@ export default class Main extends Component {
 
   loadCharacters = async () => {
     const response = await api.get(
-      `/characters?ts=${ts}&apikey=${apikey}&hash=${hash}`
+      `/characters?ts=${ts}&apikey=${apikey}&hash=${hash}&limit=12`
     );
 
     const image = response.data.data.results[0].thumbnail.path + ".jpg";
@@ -33,104 +37,43 @@ export default class Main extends Component {
   render() {
     const { personagens } = this.state;
 
-    return (
-      <div className="marvel-list">
-        <h1>Character</h1>
-        <div className="busca">
-          <input />
-          <img alt="" />
-        </div>
-
+    const Cell = () => (
+      <div>
         {personagens.map((personagem) => (
-          <div>
-            <div className="linha">
-              <article className="personagem" key={personagem.id}>
-                <img src={personagem.thumbnail.path + ".jpg"} />
-                <h2>{personagem.name}</h2>
-                <h3>{personagem.description}</h3>
-              </article>
-            </div>
-          </div>
+          <article className="personagem" key={personagem.id}>
+            <img src={personagem.thumbnail.path + ".jpg"} />
+            <h2>{personagem.name}</h2>
+          </article>
         ))}
+      </div>
+    );
 
-        <div>
-          <div className="linha">
-            <div className="personagem">
-              <img />
-              <h2>Heroi</h2>
-              <h3>Nome</h3>
-              <p>Descricao</p>
-            </div>
-            <div className="personagem">
-              <img />
-              <h2>Heroi</h2>
-              <h3>Nome</h3>
-              <p>descircao</p>
-            </div>
-            <div className="personagem">
-              <img />
-              <h2>Heroi</h2>
-              <h3>Nome</h3>
-              <p>descircao</p>
-            </div>
-            <div className="personagem">
-              <img />
-              <h2>Heroi</h2>
-              <h3>Nome</h3>
-              <p>descircao</p>
-            </div>
+    return (
+      <div>
+        <div className="marvel-list">
+          <h1>Character</h1>
+          <div className="busca">
+            <input value="Characters" />
+            <img alt="" />
           </div>
-          <div className="linha">
-            <div className="personagem">
-              <img />
-              <h2>Heroi</h2>
-              <h3>Nome</h3>
-              <p>descircao</p>
-            </div>
-            <div className="personagem">
-              <img />
-              <h2>Heroi</h2>
-              <h3>Nome</h3>
-              <p>descircao</p>
-            </div>
-            <div className="personagem">
-              <img />
-              <h2>Heroi</h2>
-              <h3>Nome</h3>
-              <p>descircao</p>
-            </div>
-            <div className="personagem">
-              <img />
-              <h2>Heroi</h2>
-              <h3>Nome</h3>
-              <p>descircao</p>
-            </div>
-          </div>
-          <div className="linha">
-            <div className="personagem">
-              <img />
-              <h2>Heroi</h2>
-              <h3>Nome</h3>
-              <p>descircao</p>
-            </div>
-            <div className="personagem">
-              <img />
-              <h2>Heroi</h2>
-              <h3>Nome</h3>
-              <p>descircao</p>
-            </div>
-            <div className="personagem">
-              <img />
-              <h2>Heroi</h2>
-              <h3>Nome</h3>
-              <p>descircao</p>
-            </div>
-            <div className="personagem">
-              <img />
-              <h2>Heroi</h2>
-              <h3>Nome</h3>
-              <p>descircao</p>
-            </div>
+          <div>
+            <Container className="">
+              <Row className="">
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((i) => (
+                  <Col className="" xs="3">
+                    {personagens.map((personagem) => (
+                      <article className="personagem" key={personagem.id}>
+                        <img
+                          className="personagens-foto"
+                          src={personagem.thumbnail.path + ".jpg"}
+                        />
+                        <h2>{personagem.name}</h2>
+                      </article>
+                    ))}
+                  </Col>
+                ))}
+              </Row>
+            </Container>
           </div>
         </div>
       </div>

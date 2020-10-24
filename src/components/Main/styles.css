@@ -40,12 +40,14 @@ div input {
   border-radius: 3px;
   border-color: white;
   background-color: #ffffff;
+
+  font-family: Roboto;
+  font-weight: normal;
+  font-size: 14px;
 }
 
-.linha {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 29px;
+.container {
+  width: 500px;
 }
 
 .personagem {
@@ -68,7 +70,12 @@ personagem::after {
   background-color: #ed1d24;
 }
 
-img {
+.personagens-foto {
   width: 56px;
-  height: 56.1px;
+  height: 56px;
+  border-radius: 50%;
+}
+
+.linha {
+  width: 44px;
 }

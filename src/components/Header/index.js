@@ -7,7 +7,7 @@ import logo from "../../marvel-logo-7.png";
 
 const Header = () => (
   <div className="header">
-    <img src={logo} />
+    <img className="logo" src={logo} />
   </div>
 );
 
